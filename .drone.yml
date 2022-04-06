@@ -1,0 +1,38 @@
+---
+kind: pipeline
+type: kubernetes
+name: ci
+clone:
+  depth: 1
+  disable: true
+
+steps:
+  - name: 获取开发分支
+    image: ysicing/drone-plugin-git
+    pull: always
+    settings:
+      depth: 1
+      branch: master
+      url: https://github.com/drone-stack/drone-dockerd.git
+
+  - name: test
+    image: docker
+    volumes:
+    - name: dockersock
+      path: /var/run/
+    commands:
+    - sleep 5
+    - docker info
+    - docker ps -a
+
+services:
+  - name: docker daemon
+    image: ysicing/drone-plugin-dockerd
+    privileged: true
+    volumes:
+      - name: dockersock
+        path: /var/run
+
+volumes:
+  - name: dockersock
+    temp: {}

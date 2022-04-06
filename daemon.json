@@ -1,0 +1,7 @@
+{
+    "experimental": false,
+    "registry-mirrors": [
+        "https://mirror.ccs.tencentyun.com",
+        "https://dyucrs4l.mirror.aliyuncs.com"
+   ]
+}
