@@ -28,7 +28,7 @@ steps:
 services:
   - name: docker daemon
     image: ysicing/drone-plugin-dockerd
-    privileged: true
+    # privileged: true
     volumes:
       - name: dockersock
         path: /var/run
